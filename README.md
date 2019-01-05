@@ -25,7 +25,7 @@ and average waiting time.
     b. LRU
     c. LFU
 
-PART B :
+PART B :  
 7. Write a program to recognize strings under 'a*', 'a*b+'. 'abb'.
 
 8. Write a program to test whether a given identifier is valid or not.
