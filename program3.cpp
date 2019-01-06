@@ -2,7 +2,7 @@
 
 // write a program to implement producer-consumer problem using semaphores.
 
-//**PS : FIND SAMPLE OUTPUT AFFIXED AT THE END.
+//**PS : FIND SAMPLE OUTPUT AFFIXED AT THE END OF THIS FILE.
 
 using namespace std;
 

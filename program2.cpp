@@ -4,7 +4,7 @@
 // CPU scheduling algorithm. Display the turnaround time and waiting time for each process. Also, calculate the average turnaround time
 // and average waiting time.
 
-//**PS : FIND SAMPLE OUTPUT AFFIXED AT THE END.
+//**PS : FIND SAMPLE OUTPUT AFFIXED AT THE END OF THIS FILE.
 
 using namespace std;
 
@@ -215,7 +215,7 @@ int main()
 
     Gantt Chart :
     [0][1][1][1][0][0]
-    
+
     Process         Wait-Time       Turn-Around-Time
     P[0]            3               6
     P[1]            0               3
