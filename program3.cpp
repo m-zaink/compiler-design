@@ -24,32 +24,30 @@ class Message
         //Initially buffer is empty and thus empty = true;
         empty = true;
     }
-    string read();
-    void write(string item);
+
+    string read()
+    {
+        //Function to read the contents of the shared memory(buffer)
+        //and subsequently empty the buffer.
+        //This also sets empty = true.
+
+        if (empty)
+            return "empty";
+        empty = true;
+        return buffer;
+    }
+
+    void write(string item)
+    {
+        //Function to write onto the shared memory(buffer)
+        //and subsequently set empty = false.
+
+        if (!empty)
+            return;
+        buffer = item;
+        empty = false;
+    }
 };
-
-string Message::read()
-{
-    //Function to read the contents of the shared memory(buffer)
-    //and subsequently empty the buffer.
-    //This also sets empty = true.
-
-    if (empty)
-        return "empty";
-    empty = true;
-    return buffer;
-}
-
-void Message::write(string item)
-{
-    //Function to write onto the shared memory(buffer)
-    //and subsequently set empty = false.
-
-    if (!empty)
-        return;
-    buffer = item;
-    empty = false;
-}
 
 class Producer
 {
