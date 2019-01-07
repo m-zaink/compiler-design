@@ -25,14 +25,14 @@ int curProcessSchedule(struct ProcessBlock processList[], int n, int timeElapsed
     //The process with the highest priority among all the processes
     //That have already up until now is selected.
 
-    int minArv = INT_MAX, minPr = INT_MAX, pos;
+    int minPr = INT_MAX, pos;
 
     for (int i = 0; i < n; ++i)
     {
         if (!processList[i].scheduled &&
             processList[i].priority < minPr &&
             processList[i].arrivalTime <= timeElapsed)
-            minArv = processList[i].arrivalTime, minPr = processList[i].priority, pos = i;
+                minPr = processList[i].priority, pos = i;
     }
 
     return pos;
@@ -50,7 +50,7 @@ int findTotalBurstTime(struct ProcessBlock processList[], int n)
     return totalTime;
 }
 
-void updateProcessList(struct ProcessBlock processList[], int n, int pos, int timeElapsed)
+void updateProcessWaitTimes(struct ProcessBlock processList[], int n, int pos, int timeElapsed)
 {
     //Utility function to the update the wait-time of each process after each second.
     //Currently executing process if not considered since it isn't waiting but instead
