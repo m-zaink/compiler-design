@@ -1,8 +1,5 @@
 a.exe
 a.out
-<<<<<<< HEAD
 *.exe
 *.out
-=======
 .vscode/*
->>>>>>> 7fd293a1fa6b8596d947b1e6863994be1b6c9f36
