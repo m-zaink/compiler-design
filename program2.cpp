@@ -115,7 +115,7 @@ void scheduleProcessList(struct ProcessBlock processList[], int n)
         order[timeElapsed] = pos;
         --processList[pos].remainingTime;
 
-        updateProcessList(processList, n, pos, timeElapsed);
+        updateProcessWaitTimes(processList, n, pos, timeElapsed);
 
         if (processList[pos].remainingTime == 0) {
             processList[pos].scheduled = true;
