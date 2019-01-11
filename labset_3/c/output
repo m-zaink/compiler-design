@@ -1,0 +1,42 @@
+1.Producer    2.Consumer    3.Exit  : 1
+Enter data : 10
+Produced : 10
+
+1.Producer    2.Consumer    3.Exit  : 1
+Enter data : 20
+Produced : 20
+
+1.Producer    2.Consumer    3.Exit  : 2
+
+Consumed : 10
+
+1.Producer    2.Consumer    3.Exit  : 1
+Enter data : 30
+Produced : 30
+
+1.Producer    2.Consumer    3.Exit  : 1
+Enter data : 40
+Produced : 40
+
+1.Producer    2.Consumer    3.Exit  : 1
+Enter data : 50
+-- Buffer Full --
+
+
+1.Producer    2.Consumer    3.Exit  : 2
+
+Consumed : 20
+
+1.Producer    2.Consumer    3.Exit  : 2
+
+Consumed : 30
+
+1.Producer    2.Consumer    3.Exit  : 2
+
+Consumed : 40
+
+1.Producer    2.Consumer    3.Exit  : 2
+-- Empty Buffer --
+
+
+1.Producer    2.Consumer    3.Exit  : 3
