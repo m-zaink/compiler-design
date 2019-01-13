@@ -1,3 +1,6 @@
+//Author : nateshmbhat
+//Program : Producer Consumer problem using semaphores
+
 #include<stdio.h>
 #include<stdlib.h>
 #define max 3

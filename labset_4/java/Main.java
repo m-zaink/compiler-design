@@ -1,3 +1,6 @@
+//Author : nateshmbhat
+//Program : Banker's Algorithm for Deadlock Avoidance
+
 import java.util.*;
 import java.io.*;
 
