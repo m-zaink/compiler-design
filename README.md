@@ -1,9 +1,10 @@
 **Repository to hold the programs implemented in the System-Software and Compiler Design Lab(6CSL03) of SIT.**  
 >**Authors:**  
->**m-zaink**  
->**nateshmbhat**
+>**[m-zaink](github.com/m-zaink)**  
+>**[nateshmbhat](github.com/nateshmbhat)**  
+>**[karanpratap](github.com/karanpratap)**
 ---
-> Find the solutions to the following set of programs :
+# Find the solutions to the following set of programs :
 
 ## PART-A : 
 1. Given the list of processes, their burst times and arrival times, write a program to implement the FCFS(First Come, First Serve)
@@ -18,14 +19,14 @@ and average waiting time.
 
 4. Write a program to implement Bankers algorithm for the purpose of deadlock avoidance.  
 
-5. Write a program to implement the following contiguous memory allocation techniques : 
-    a. Worst-fit
-    b. Best-fit
-    c. First-fit  
+5. Write a program to implement the following contiguous memory allocation techniques :  
+    a. Worst-fit  
+    b. Best-fit  
+    c. First-fit   
 
-6. Write a program to implement the following page replacement algorithms.
-    a. FIFO
-    b. LRU
+6. Write a program to implement the following page replacement algorithms.  
+    a. FIFO  
+    b. LRU  
     c. LFU  
 
 ## PART-B :  
