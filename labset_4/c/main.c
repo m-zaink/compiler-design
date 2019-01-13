@@ -49,15 +49,15 @@ void getInputData()
 int getNextProcess(int work[], int current)
 {
 //cicularly traverses all the processes after the currently allocated process and if need of all recourse is less that work , then returns that processs
-process:
-    for (int p = ((current + 1) % N); p != current; p = (p + 1) % N)
+    for (int i = 0 ; i < N ; i++  )
     {
-        if(finished[p]) continue ; 
+        current = (current+1)%N ;
+        if(finished[current]) continue ; 
 
         bool flag = true;
         for (int j = 0; j < N; j++)
         {
-            if (need[p][j] > work[j])
+            if (need[current][j] > work[j])
             {
                 flag = false;
                 break;
@@ -65,7 +65,7 @@ process:
         }
         if (flag == false)
             continue; //current process can't be satisfied
-        return p;     //return the process to be fulfilled
+        return current;     //return the process to be fulfilled
     }
     return -1; //no such process
 }
@@ -74,8 +74,8 @@ bool findSafeSequence()
 {
     int *work = available;
     int safeSequencePointer = 0;
-    int current = 0;
-    int n = N;
+    int current = -1;
+
     while (true)
     {
         int next = getNextProcess(work, current); // returns -1 if no process can be executed using work
