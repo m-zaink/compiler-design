@@ -1,7 +1,6 @@
 //Author : m-zaink
 //Program : FCFS scheduling
 
- 
 
 #include <bits/stdc++.h>
 

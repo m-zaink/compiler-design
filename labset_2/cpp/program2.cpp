@@ -1,3 +1,6 @@
+//Author : m-zaink
+//Program : Preemptive priority scheduling
+
 #include <bits/stdc++.h>
 
 // Given the list of processes, their burst times, priority and arrival times, write a program to implement the preemptive priority
