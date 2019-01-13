@@ -21,17 +21,19 @@ Process processes[100] ;
 int n ; 
 
 int findTotalBurstTime(){
+	//Function to find total burst time of all the processes combined.
 	int sum = 0 , i =0 ; 
 	for(i =0 ; i < n ; i++) sum+=processes[i].burstTime ; 
 	return sum ;
 }
 
 int sortCompare(const void * p ,const void * q){
+	//This function is the sort utility for Process array to be later used in.
 	return ((Process *)p)->arrivalTime - ((Process * )q)->arrivalTime ; 
 }
 
 
-bool areAllScheduled(){
+bool areAllProcessesScheduled(){
 	int i =0 ;
 	for(i =0 ; i < n ;i++) if(!processes[i].scheduled)return false ;
 	return true ; 
@@ -107,7 +109,9 @@ void scheduleProcesses(){
 	int time = 0 ; 
 	int order[100] , orderPointer =0 ; //This is the array which holds the gantt chart
 
-	while(!areAllScheduled()){ //loop until all processes are scheduled
+	while(!areAllProcessesScheduled())
+	{ 
+		//loop until all processes are scheduled
 		ProcessPair pair = getNextProcessToExecute(time) ; 
 
 		int current = pair.current, next = pair.next; 

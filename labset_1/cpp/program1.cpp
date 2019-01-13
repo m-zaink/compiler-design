@@ -9,7 +9,7 @@
 // CPU scheduling algorithm. Display the turnaround time and waiting time for each process. Also, calculate the average turnaround time
 // and average waiting time.
 
-//**PS : FIND SAMPLE OUTPUT AFFIXED AT THE END.
+//**PS : FIND SAMPLE OUTPUT AFFIXED AT THE END OF THIS FILE.
 
 using namespace std;
 
