@@ -52,11 +52,12 @@ int getNextProcess(int work[], int current)
 process:
     for (int p = ((current + 1) % N); p != current; p = (p + 1) % N)
     {
+        if(finished[p]) continue ; 
 
         bool flag = true;
         for (int j = 0; j < N; j++)
         {
-            if (finished[p] || need[p][j] > work[j])
+            if (need[p][j] > work[j])
             {
                 flag = false;
                 break;
