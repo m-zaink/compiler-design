@@ -1,7 +1,6 @@
 //Author : m-zaink
 //Program : FCFS scheduling
 
-
 #include <bits/stdc++.h>
 
 // Given the list of processes, their burst times and arrival times, write a program to implement the FCFC(First Come, First Server)

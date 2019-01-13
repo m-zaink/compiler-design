@@ -1,0 +1,21 @@
+Enter number of processes :
+3
+Enter number of Resource types :
+3
+Enter Allocation matrix :
+
+4 2 6
+2 3 1
+0 1 2
+Enter Max matrix :
+
+6 8 6
+8 5 2
+1 2 3
+Enter Available array :
+
+10 6 3
+
+Safe Sequence is :
+
+P1 P2 P0
