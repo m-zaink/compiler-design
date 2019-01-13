@@ -1,6 +1,9 @@
-**Repository to hold the programs implemented in the System-Software and Compiler Design Lab(6CSL03) of SIT.**
-
-> Find the solutions to the following set of programs : 
+**Repository to hold the programs implemented in the System-Software and Compiler Design Lab(6CSL03) of SIT.**  
+>**Authors:**  
+>**m-zaink**  
+>**nateshmbhat**
+---
+> Find the solutions to the following set of programs :
 
 ## PART-A : 
 1. Given the list of processes, their burst times and arrival times, write a program to implement the FCFS(First Come, First Serve)
