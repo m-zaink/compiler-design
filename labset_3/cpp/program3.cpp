@@ -1,3 +1,7 @@
+//Author : m-zaink
+//Program : Producer Consumer problem using semaphores
+
+
 #include <bits/stdc++.h>
 
 // write a program to implement producer-consumer problem using semaphores.
