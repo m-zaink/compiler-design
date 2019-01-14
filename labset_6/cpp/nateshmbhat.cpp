@@ -20,7 +20,7 @@ int dequeue(Queue* q ){
 	int data = q->data[q->f] ; 
 
 	if(q->f ==q->r){
-		q->f = q->r = 0 ; 
+		q->f = q->r = -1 ; 
 	}
 	else q->f++ ; 
 }
@@ -30,12 +30,15 @@ int frameMatrix[100][100] ;
 int F ; //no of frames 
 int P ; //no of pages 
 int pages[100] ;
+int pageFaults = 0 ;  //no of page faults 
 
 
 void FIFO(){
+	int pos = -1 ; // keeps track of the pages in FIFO order 
 	for(int p =0 ;p < P ; p++){
+		pos = -1 ; 
 		for(int f = 0 ; f< F ; f++){
-
+			i
 		}
 	}
 }
