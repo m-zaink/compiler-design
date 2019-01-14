@@ -1,3 +1,6 @@
+//Author  : nateshmbhat
+//Program : Memory allocation techniques 
+
 #include<bits/stdc++.h>
 using namespace std ; 
 
@@ -7,7 +10,6 @@ int psizes[100] ; //processes sizes
 int memory[100] ; //memory blocks each representing size of that block
 int memoryCopy[100] ; //copy of memory
 int allocation[100] ; //array of numbers whose position represents the process and value represents the memory block allocated
-
 
 
 void display(){
@@ -119,7 +121,7 @@ Process		Sizes		MemoryBlocks(-1 = not allocated)
 Worst Fit : 
 Process		Sizes		MemoryBlocks(-1 = not allocated)
 --------------------------------------
-0		70		-1
+0		70		4
 1		5		2
 2		10		2
 3		3		2
@@ -129,10 +131,11 @@ Process		Sizes		MemoryBlocks(-1 = not allocated)
 First Fit : 
 Process		Sizes		MemoryBlocks(-1 = not allocated)
 --------------------------------------
-0		70		-1
-1		5		1
-2		10		2
-3		3		1
-4		6		2
+0		70		4
+1		5		0
+2		10		1
+3		3		0
+4		6		1
+
 
 */
