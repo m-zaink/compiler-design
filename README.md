@@ -1,9 +1,9 @@
 # Repository Details :
 **Repository to hold the programs implemented in the System-Software and Compiler Design Lab(6CSL03) of SIT.**  
 >**Authors:**  
->**[m-zaink](github.com/m-zaink)**  
->**[nateshmbhat](github.com/nateshmbhat)**  
->**[karanpratap](github.com/karanpratap)**
+>**[m-zaink](https://github.com/m-zaink)**  
+>**[nateshmbhat](https://github.com/nateshmbhat)**  
+>**[karanpratap](https://github.com/karanpratap)**
 ---
 # Find the solutions to the following set of programs :
 

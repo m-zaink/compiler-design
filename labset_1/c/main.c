@@ -22,6 +22,9 @@ float findWait(Process * P){
 		if(P[i].wait<0) P[i].wait = 0 ; 
 		avg+=P[i].wait ; 
 		time+=P[i].bt;
+		if(i+1 < size && time < P[i+1].arrival){
+			time = P[i+1].arrival ; 
+		}
 	}
 	avg/=size ; 
 	return avg ; 
@@ -61,7 +64,7 @@ void takeinput(Process * P){
 }
 
 
-void main(void){
+void main(){
 	int i; 
 	printf("Enter no of processes : " ) ;scanf("%d" , &size) ; 
 	Process * P = (Process *)malloc(sizeof(Process)* size) ; 
