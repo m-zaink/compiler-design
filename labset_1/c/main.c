@@ -85,11 +85,11 @@ void main(){
 Enter no of processes : 3
 Enter process number , burst time and arrival times  : 
 0 1 3
-0 2 2
-0 3 1
+1 2 2
+2 3 1
 Average wait time : 1.67 Average Turn around time : 3.67 
- Process 0 : wait time =0.00 , TA time = 3.00 
- Process 0 : wait time =2.00 , TA time = 4.00 
+ Process 2 : wait time =0.00 , TA time = 3.00 
+ Process 1 : wait time =2.00 , TA time = 4.00 
  Process 0 : wait time =3.00 , TA time = 4.00 
 
 
@@ -118,7 +118,6 @@ Average wait time : 0.67 Average Turn around time : 4.33
  Process 0 : wait time =0.00 , TA time = 2.00 
  Process 1 : wait time =0.00 , TA time = 4.00 
  Process 2 : wait time =2.00 , TA time = 7.00
-
 
  
 */

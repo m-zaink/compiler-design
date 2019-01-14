@@ -103,7 +103,7 @@ Enter no of processes : 5
 
 Enter no of memory blocks : 5
 
-Enter process sizes : 70 5 10 3 6 
+Enter process sizes : 70 5 10 3 6
 
 Enter memory block sizes : 10 20 50 5 100
 Best Fit : 
@@ -119,7 +119,7 @@ Process		Sizes		MemoryBlocks(-1 = not allocated)
 Worst Fit : 
 Process		Sizes		MemoryBlocks(-1 = not allocated)
 --------------------------------------
-0		70		4
+0		70		-1
 1		5		2
 2		10		2
 3		3		2
@@ -129,10 +129,10 @@ Process		Sizes		MemoryBlocks(-1 = not allocated)
 First Fit : 
 Process		Sizes		MemoryBlocks(-1 = not allocated)
 --------------------------------------
-0		70		4
-1		5		0
-2		10		1
-3		3		0
-4		6		1
+0		70		-1
+1		5		1
+2		10		2
+3		3		1
+4		6		2
 
 */
