@@ -75,3 +75,46 @@ void main(){
 		printf(" Process %d : wait time =%.2f , TA time = %.2f \n" , P[i].pnum ,P[i].wait  , P[i].ta) ; 
 	}
 }
+
+
+
+/*
+
+Enter no of processes : 3
+Enter process number , burst time and arrival times  : 
+1 1 3
+2 2 2
+3 3 1
+Average wait time : 1.00 Average Turn around time : 3.00 
+ Process 3 : wait time =0.00 , TA time = 3.00 
+ Process 2 : wait time =1.00 , TA time = 3.00 
+ Process 1 : wait time =2.00 , TA time = 3.00 
+
+--------------------------------------------------------------------
+
+
+Enter no of processes : 3 
+Enter process number , burst time and arrival times  : 
+1 1 1
+2 1 2
+3 1 3
+Average wait time : 0.00 Average Turn around time : 1.00 
+ Process 1 : wait time =0.00 , TA time = 1.00 
+ Process 2 : wait time =0.00 , TA time = 1.00 
+ Process 3 : wait time =0.00 , TA time = 1.00 
+
+--------------------------------------------------------------------
+
+
+
+Enter no of processes : 3
+Enter process number , burst time and arrival times  : 
+1 2 0
+2 4 3
+3 5 5
+Average wait time : 0.67 Average Turn around time : 4.33 
+ Process 1 : wait time =0.00 , TA time = 2.00 
+ Process 2 : wait time =0.00 , TA time = 4.00 
+ Process 3 : wait time =2.00 , TA time = 7.00 
+
+*/
