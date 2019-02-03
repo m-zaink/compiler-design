@@ -3,6 +3,8 @@
 
 #include<bits/stdc++.h>
 
+using namespace std;
+
 typedef struct{
 	int f , r ; 
 	int data[100];

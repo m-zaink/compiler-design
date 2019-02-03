@@ -140,6 +140,8 @@ int main() {
 
 //Sample Output
 /* 
+	Enter the number of holes : 5
+	Enter the number of processes : 5
 	Enter the size of each hole : 
 	Hole [ 0 ] : 10
 	Hole [ 1 ] : 20
