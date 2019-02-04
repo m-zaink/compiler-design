@@ -115,6 +115,69 @@ void lruPageReplacement(int pageQueue[], int pages, int frames)
 		 << "LRU\t\t\t\t" << counter << endl;
 }
 
+int getLeastFrequentlyUsed(int pageFrequency[], int pages, int frameString[], int frames)
+{
+	//Utility function that returns the least frequently used page that is 
+	//present in the FrameString.
+
+	//var :
+	//pos : to keep track of the position of the page to replace
+	//min : to keep track which has the least timestamp => meaning least recently used.	
+
+	int pos = INT_MIN, min = INT_MAX;
+	for(int i = 0; i < frames; ++i) 
+		if(pageFrequency[frameString[i] % pages] < min)
+			//%pages simply helps in bringing the indices in the 
+			//range 0 to pages - 1 for easy indexing and memory efficiency.
+			pos = i, min = pageFrequency[frameString[i] % pages];
+	
+	pageFrequency[pos] ++;	//update the frequency of the page to replaced.
+	return pos;
+}
+
+
+void lfuPageReplacement(int pageQueue[], int pages, int frames) {
+	//Function to implement the LRU Page Replacement algorithm.
+
+	//var :
+	//couter : to keep track of # of page faults.
+	//pos : to keep track of which page from pageString to replace next.
+	int counter = 0, pos = -1;
+
+	//var:
+	//frameString : array to hold the pages in memory.
+	//pageFrequency : an auxiliary array to hold the use-frquency of the pages
+	//i.e. when they were last used.
+	int frameString[frames] = {0}, pageFrequency[pages];
+
+	for(int i = 0; i < pages; ++i) 
+	//initializing the pageCount to defaults.
+		pageFrequency[pages] = 0;
+	
+	//ignore this place. Just o/p formatting.
+	cout << "\t\t\t\t\t\t\t";
+
+	for (int i = 0; i < pages; ++i)
+	{
+		if (!containsPage(frameString, pageQueue[i], frames))
+		{
+			//if page not already present in the frameString.
+			if(!(i < frames))
+				pos = getLeastFrequentlyUsed(pageFrequency, pages, frameString, frames);
+			else
+				pageFrequency[i]++, pos = i;
+			frameString[pos] = pageQueue[i];
+			cout << "\t" << pageQueue[i];
+			++counter;
+		} else {
+			pageFrequency[i]++;
+		}
+	}
+
+	cout << endl
+		 << "LFU\t\t\t\t" << counter << endl;
+}
+
 int main(void)
 {
 	//var :
@@ -136,6 +199,7 @@ int main(void)
 
 	fifoPageReplacement(pageQueue, pages, frames);
 	lruPageReplacement(pageQueue, pages, frames);
+	lfuPageReplacement(pageQueue, pages, frames);
 
 	return 0;
 }
