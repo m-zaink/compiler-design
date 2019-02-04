@@ -9,6 +9,14 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
+Any further copies or re-distribution or modification or use of this software
+or repository shall receive mentioning of original authorship. The authors of 
+the said software are : 
+Mohammed Sadiq (m-zaink@github)
+Natesh M Bhat (nateshmbhat@github)
+Karan Pratap Singh (karanpratap@github)
+
+
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
@@ -18,9 +26,4 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE. FURTHERMORE, ANY FURTHER COPIES OR RE-DISTRIBUTION OR MODIFICATION OR
-USE OF THIS SOFTWARE SHALL RECEIVE MENTIONING OF AUTHORSHIP. THE AUTHORS OF THE
-SAID SOFTWARE ARE :
-Mohammed Sadiq
-Natesh M Bhat
-Karan Pratap Singh
+SOFTWARE.
