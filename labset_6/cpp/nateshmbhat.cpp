@@ -24,7 +24,6 @@ int F; //no of frames
 int P; //no of pages
 int pages[SIZE];
 int pageFaults = 0; //no of page faults
-int pageCounts[SIZE] ; 
 
 void enqueue(int data)
 {
@@ -60,6 +59,7 @@ int findFrame(int page)
 	// returns index of page in any frame of else -1 if not found(page fault)
 	for (int i = 0; i < F; i++)
 	{
+		if(frames[i]==-1)continue ;  //empty frame
 		if (pages[frames[i]]== page)
 			return i; //found at frame i
 	}
@@ -76,7 +76,6 @@ int getEmptyFrame()
 	}
 	return -1 ; 
 }
-
 
 void FIFO()
 {
@@ -103,31 +102,34 @@ void FIFO()
 int getLeastRecentPagesFrame(int pos)
 {
 	// returns the frame number which contains the page which is least recently used
-	int pageToFrameTable[100] = { 0} ;
-	int recentCount[100] = { 0 } ; 
-	int leastUsed = INT_MAX ; //position of page in pages which is least recently used
+	int i ; 
+	int frameCount =0 ; //goes till F-1 which indicates all pages except the last one gives the least used page .
+	int pageToOccurance[SIZE]  ; //keeps track of number of occurances of each before from position till first and returns the first page which is found after all other pages in the frame are found when traversing from i=pos-1 till 0 .
+	memset(pageToOccurance , -1 , SIZE) ;  
 
-	for(int i =0 ;i < F ; i++) 
-		pageToFrameTable[pages[frames[i]]] = i+1 ;  // page to frame mapping
-
-	for(int i =pos-1 ;i  >= 0  ; i--){
-		if(pageToFrameTable[pages[i]]>0){ // if page present in a frame , then map its position in recentCount
-			if(recentCount[pages[i]]==0)
+	for(i =pos-1 ; i>=0 ;i--){
+		if(frameCount==F-1) break ;  //the page we are looking for is before i 
+		if(findFrame(pages[i])!=-1){
+			if(pageToOccurance[pages[i]]<0) //check if same number has occured before while traversing back through the page string and only consider that for framecount if it wasn't seen before.
 			{
-				leastUsed = min(leastUsed , i ) ; 
-				recentCount[pages[pos]] = i+1 ; 
+				pageToOccurance[pages[i]]++ ;  
+				frameCount++ ; 
 			}
 		}
 	}
+	while(i>=0){
+		int lru =findFrame(pages[i])  ; 
+		if(lru>=0 && pageToOccurance[pages[i]]==-1) return lru ; 	
+		i-- ; 
+	}
 
-	return pageToFrameTable[pages[leastUsed]] ; 
+	cout<<"LRU : Page Faults = " << pageFaults <<endl; 
 }
 
 
 
 void LRU(){
 	pageFaults= 0 ; 
-
 	for(int i =0 ;i < P ; i++){
 		int frame = findFrame(pages[i]) ; 				
 
@@ -144,20 +146,19 @@ void LRU(){
 
 
 
-int getLeastFrequentUsed(int pos){
+int getLeastFrequentUsed(int pos ){
 	// returns the frame index of frame which contains the page that's used the least number of times till now.
 
 	int minvalue = INT_MAX , minpos = -1 ; 
-	memset(pageCounts , 0 , SIZE) ; 
+	int pageCounts[SIZE] = {0} ; 
 
 	for(int i =pos-1 ; i>=0 ; i--){
 		pageCounts[pages[i]]+= 1 ; 
-		if(minvalue>pageCounts[pages[i]]){
+		if(minvalue>=pageCounts[pages[i]]){
 			minvalue= pageCounts[pages[i]] ; 
 			minpos = i ; 
 		}
 	}
-
 
 	for(int i =0 ;i < F ; i++)
 		if(pages[frames[i]]==pages[minpos]) return i ; 
@@ -166,6 +167,8 @@ int getLeastFrequentUsed(int pos){
 
 void LFU(){
 
+	int pageCounts[SIZE] = {};  //count of each page
+
 	pageFaults= 0 ; 
 
 	for(int i =0 ;i < P ; i++){
@@ -173,8 +176,8 @@ void LFU(){
 
 		if(frame==-1){//page fault
 			pageFaults++ ; 
-			int selectedFrame = getLeastFrequentUsed(i) ; 
-			selectedFrame = selectedFrame>=0?selectedFrame : getLeastRecentPagesFrame(i) ; 
+			int selectedFrame = getEmptyFrame() ; 
+			selectedFrame = selectedFrame>=0?selectedFrame : getLeastFrequentUsed(i  ) ; 
 			frames[selectedFrame] = i ; 
 		}
 	}	
@@ -198,3 +201,17 @@ int main(void){
 	memset(frames ,  -1 , SIZE) ; 
 	LFU() ; 
 }
+
+
+
+/*
+
+Enter no of frames : 4
+
+Enter no of pages : 13
+
+Enter page numbers : 7 0 1 2 0 3 0 4 2 3 0 3 2
+FIFO : Page Faults = 7
+LRU page faults = 6
+
+*/
