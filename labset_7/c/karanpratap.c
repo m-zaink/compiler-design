@@ -95,3 +95,36 @@ int main(){
 	printf("\n");
 	return 0;
 }
+
+/*
+SAMPLE OUTPUT
+=============
+
+OUTPUT 1
+--------
+
+	Enter the Input String:aaaabbb
+	
+	Valid String Input : [ a*b+ ]
+
+OUTPUT 2
+--------
+
+	Enter the Input String:abb
+
+	Valid String Input : [ abb ]
+
+OUTPUT 3
+--------
+
+	Enter the Input String:aaa
+
+	Valid String Input : [ a* ]
+
+OUTPUT 4
+--------
+
+	Enter the Input String:aaba
+
+	Invalid String Input!
+*/
