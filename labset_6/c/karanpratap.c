@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
-#define MAX 100
+#define MAX 1000
 
 //global variables
 int noOfPages;					//A variable to store the number of page requests
@@ -190,18 +190,19 @@ void pageReplacementLFU(){
 		hitIndex=checkForHit(pages[i],indexToReplace);
 		if(hitIndex!=-1){
 			printf("\n[%d]Hit",pages[i]);
-			indexToReplace++;
 			usageFrequency[hitIndex]++;
 			continue;
 		} 
 		printf("\n[%d]Fault: ",pages[i]);
 		faults++;
+		
 		if(usageFrequency[i%slots]==0){
-			container[i]=pages[i];
-			usageFrequency[i]++;
-			displayContainer();
-			continue;
-		}
+            container[i%slots]=pages[i];
+            usageFrequency[i%slots]++;
+            displayContainer();
+            continue;
+        }
+
 		lfuElementCount=fillLfuLeastSet();
 		if(lfuElementCount==1){
 			target=lfuLeastSet[0];
