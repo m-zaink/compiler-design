@@ -3,60 +3,18 @@
 #include<iostream> 
 #include<iomanip> 
 #include<cstring>
-#include<math.h>
-#include<cstdlib>
-
 #define SIZE 100
 #define INT_MAX 9999
-
 using namespace std ; 
 
-typedef struct
-{
-	int f, r;
-	int data[100];
-} Queue;
-
-
-Queue queue = {-1, -1}; //main queue for FIFO
-int frames[SIZE]  ; 
+int frames[SIZE]  ;  //Frames array which contains the index of the page which resides in each frame
 int F; //no of frames
 int P; //no of pages
 int pages[SIZE];
 int pageFaults = 0; //no of page faults
 
-void enqueue(int data)
-{
-	queue.data[++queue.r] = data;
-	if (queue.f == -1)
-		queue.f = 0;
-}
-
-int dequeue()
-{
-	if (queue.f == -1)
-		return -1;
-	int data = queue.data[queue.f];
-
-	if (queue.f == queue.r)
-	{
-		queue.f = queue.r = -1;
-	}
-	else
-		queue.f++;
-	return data ; 
-}
-
-void printFrame(){
-	for(int i= 0 ;i < F ; i++){
-		cout<<pages[frames[i]] << " " ; 
-	}
-	cout<<endl; 
-}
-
 int findFrame(int page)
-{
-	// returns index of page in any frame of else -1 if not found(page fault)
+{ // returns index of page in any frame of else -1 if not found(page fault)
 	for (int i = 0; i < F; i++)
 	{
 		if(frames[i]==-1)continue ;  //empty frame
@@ -67,37 +25,13 @@ int findFrame(int page)
 }
 
 int getEmptyFrame()
-{
-	// get the first empty frame .
+{ // get the first empty frame .
 	for (int i = 0; i < F; i++)
 	{
-		if (frames[i]<0)
-			return i;
+		if (frames[i]<0) return i;
 	}
 	return -1 ; 
 }
-
-void FIFO()
-{
-	int page = 0;
-	pageFaults= 0 ; 
-	for (int p = 0; p < P; p++) //pages[p] is the current page considered . p is the pointer here
-	{
-		int page = pages[p] ; 
-		int frame = findFrame(page) ; 
-		if (frame == -1) //not found
-		{
-			pageFaults++ ; 
-			int emptyFrame = getEmptyFrame() ; 
-			int selectedFrame  = emptyFrame!=-1 ? emptyFrame : dequeue() ;  //selected frame to put the page. If any empty frame found initally use that else use the FIFO order for frames. 
-
-			frames[selectedFrame] = p ; 
-			enqueue(selectedFrame);
-		}
-	}
-	cout<<"FIFO : Page Faults = " << pageFaults <<endl; 
-}
-
 
 int getLeastRecentPagesFrame(int pos)
 {
@@ -107,8 +41,8 @@ int getLeastRecentPagesFrame(int pos)
 	int pageToOccurance[SIZE]  ; //keeps track of number of occurances of each before from position till first and returns the first page which is found after all other pages in the frame are found when traversing from i=pos-1 till 0 .
 	memset(pageToOccurance , -1 , SIZE) ;  
 
-	for(i =pos-1 ; i>=0 ;i--){
-		if(frameCount==F-1) break ;  //the page we are looking for is before i 
+	for(i =pos-1 ; i>=0 ;i--){ //Traverse from pos-1 till we see all the pages that are present in the frame except the last page which is the LRU page
+		if(frameCount==F-1) break ;  //the page we are looking for is left of i.
 		if(findFrame(pages[i])!=-1){
 			if(pageToOccurance[pages[i]]<0) //check if same number has occured before while traversing back through the page string and only consider that for framecount if it wasn't seen before.
 			{
@@ -117,33 +51,13 @@ int getLeastRecentPagesFrame(int pos)
 			}
 		}
 	}
-	while(i>=0){
+	while(i>=0){ //search for the LRU page which lies to the left of i 
 		int lru =findFrame(pages[i])  ; 
 		if(lru>=0 && pageToOccurance[pages[i]]==-1) return lru ; 	
 		i-- ; 
 	}
-
 	cout<<"LRU : Page Faults = " << pageFaults <<endl; 
 }
-
-
-
-void LRU(){
-	pageFaults= 0 ; 
-	for(int i =0 ;i < P ; i++){
-		int frame = findFrame(pages[i]) ; 				
-
-		if(frame==-1){//page fault
-			pageFaults++ ; 
-			int selectedFrame = getEmptyFrame(); 
-			selectedFrame = selectedFrame>=0?selectedFrame : getLeastRecentPagesFrame(i) ; 
-			frames[selectedFrame] = i ; 
-		}
-	}	
-
-	cout<<"LRU page faults = " << pageFaults<<endl ; 
-}
-
 
 
 int getLeastFrequentUsed(int pos ){
@@ -151,7 +65,6 @@ int getLeastFrequentUsed(int pos ){
 
 	int minvalue = INT_MAX , minpos = -1 ; 
 	int pageCounts[SIZE] = {0} ; 
-
 	for(int i =pos-1 ; i>=0 ; i--)pageCounts[pages[i]]+= 1 ;
 
 	for(int i =pos-1 ; i>=0 ; i--){
@@ -166,41 +79,41 @@ int getLeastFrequentUsed(int pos ){
 }
 
 
-void LFU(){
-
-	int pageCounts[SIZE] = {};  //count of each page
-
-	pageFaults= 0 ; 
-
-	for(int i =0 ;i < P ; i++){
-		int frame = findFrame(pages[i]) ; 				
-
-		if(frame==-1){//page fault
-			pageFaults++ ; 
-			int selectedFrame = getEmptyFrame() ; 
-			selectedFrame = selectedFrame>=0?selectedFrame : getLeastFrequentUsed(i  ) ; 
-			frames[selectedFrame] = i ; 
-		}
-	}	
-	cout<< "LFU : Page Faults = " << pageFaults <<endl; 
-}
-
-
-
 int main(void){
+	int ch , queueRear =-1 , queueFront=0 , queue[100] ; 
 	cout<<"Enter no of frames : " ;  cin>>F ; 
 	cout<<"\nEnter no of pages : " ;  cin>>P ; 
 	cout<<"\nEnter page numbers : " ; 
-
 	for(int i =0 ;i < P ; i++)
 		cin>>pages[i] ; 
 
-	memset(frames , -1 , SIZE) ; 
-	FIFO() ; 
-	memset(frames ,  -1 , SIZE) ; 
-	LRU() ;
-	memset(frames ,  -1 , SIZE) ; 
-	LFU() ; 
+	while(1){
+		cout<<"\n1.FIFO\t2.LRU\t3.LFU : "  ; cin>>ch ; 
+		memset(frames , -1 , SIZE) ;  // set all elements of frames to -1 which indicates all frames are empty
+		pageFaults= 0 , queueRear =-1 , queueFront = 0  ; 
+
+		for(int i =0 ;i < P ; i++){
+			int frame = findFrame(pages[i]) ;
+			if(frame==-1){//page fault happened
+				pageFaults++ ; 
+				int selectedFrame = getEmptyFrame() ; 
+				if(selectedFrame <0 ){ // no empty frame exists
+					if(ch==1){
+						selectedFrame =  queue[queueFront++]  ;  //get front of queue which has frame number correposnding to FIFO
+						frames[selectedFrame] = i ; 
+					}
+
+					if(ch==2) selectedFrame = getLeastRecentPagesFrame(i) ; //LRU
+					if(ch==3) selectedFrame =  getLeastFrequentUsed(i) ;  // LFU
+				} 
+
+				queue[++queueRear]= selectedFrame; //insert frame number in the queue(used in FIFO algorithm)
+
+				frames[selectedFrame] = i ; 
+			}
+		}
+		cout<< "Page Faults = " << pageFaults <<endl; 
+	}
 }
 
 
