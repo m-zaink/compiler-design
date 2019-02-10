@@ -80,7 +80,7 @@ int getLeastFrequentUsed(int pos ){
 
 
 int main(void){
-	int ch , queueRear =-1 , queueFront=0 , queue[100] ; 
+	int ch , queueRear , queueFront , queue[100] ; 
 	cout<<"Enter no of frames : " ;  cin>>F ; 
 	cout<<"\nEnter no of pages : " ;  cin>>P ; 
 	cout<<"\nEnter page numbers : " ; 
@@ -90,7 +90,7 @@ int main(void){
 	while(1){
 		cout<<"\n1.FIFO\t2.LRU\t3.LFU : "  ; cin>>ch ; 
 		memset(frames , -1 , SIZE) ;  // set all elements of frames to -1 which indicates all frames are empty
-		pageFaults= 0 , queueRear =-1 , queueFront = 0  ; 
+		pageFaults= 0 , queueRear =-1 , queueFront = 0  ;
 
 		for(int i =0 ;i < P ; i++){
 			int frame = findFrame(pages[i]) ;
