@@ -152,9 +152,10 @@ int getLeastFrequentUsed(int pos ){
 	int minvalue = INT_MAX , minpos = -1 ; 
 	int pageCounts[SIZE] = {0} ; 
 
+	for(int i =pos-1 ; i>=0 ; i--)pageCounts[pages[i]]+= 1 ;
+
 	for(int i =pos-1 ; i>=0 ; i--){
-		pageCounts[pages[i]]+= 1 ; 
-		if(minvalue>=pageCounts[pages[i]]){
+		if(minvalue>=pageCounts[pages[i]] && findFrame(pages[i])!=-1){
 			minvalue= pageCounts[pages[i]] ; 
 			minpos = i ; 
 		}
@@ -213,5 +214,17 @@ Enter no of pages : 13
 Enter page numbers : 7 0 1 2 0 3 0 4 2 3 0 3 2
 FIFO : Page Faults = 7
 LRU page faults = 6
+
+
+-----------------------------------------------------------------
+
+Enter no of frames : 4
+
+Enter no of pages : 22
+
+Enter page numbers : 1 2 3 4 5 3 4 1 6 7 8 7 8 9 7 8 9 5 4 5 4 2
+FIFO : Page Faults = 13
+LRU page faults = 13
+LFU : Page Faults = 16
 
 */
