@@ -1,3 +1,5 @@
+//Program : Find First(X) where X is a non terminal for a Grammar given a set of productions
+//Author : nateshmbhat
 #include<iostream>
 #include<ctype.h>
 #define MAX 256
