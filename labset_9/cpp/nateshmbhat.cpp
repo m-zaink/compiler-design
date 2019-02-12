@@ -27,7 +27,7 @@ void findFirst(char c , char result[] ){
             	}
             	else{//its a non terminal 
             		findFirst(symb , subResult) ; 
-				addToResultSet(result , subResult) ; 
+			addToResultSet(result , subResult) ; 
             		if(subResult['#']>0){//epsilon found.Continue traversing the production string
 				if(productions[i][j+1]=='\0') result['#']++ ; 
             		}
