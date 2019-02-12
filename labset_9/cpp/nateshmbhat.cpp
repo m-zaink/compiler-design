@@ -22,14 +22,14 @@ void findFirst(char c , char result[] ){
             for(int j =3 ; productions[i][j]!='\0' ; j++){ //Traverse from 4th character till end of string
             	char symb = productions[i][j] ;
             	if(islower(symb)){ //First(X) found for current production . add it to result . Break from traversing the string and go for the next production
-					result[symb]++ ; 
-					break; 
+			result[symb]++ ; 
+			break; 
             	}
             	else{//its a non terminal 
             		findFirst(symb , subResult) ; 
-					addToResultSet(result , subResult) ; 
+				addToResultSet(result , subResult) ; 
             		if(subResult['#']>0){//epsilon found.Continue traversing the production string
-						if(productions[i][j+1]=='\0') result['#']++ ; 
+				if(productions[i][j+1]=='\0') result['#']++ ; 
             		}
             		else break;
             	}
