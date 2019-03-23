@@ -1,6 +1,8 @@
 //Author : karanpratap
 //Program : First of a given symbol in the given grammar
-//CAUTION : DONT REFER TO THIS CODE JUST YET!
+//CAUTION : DONT REFER TO THIS CODE JUST YET! 
+//PROBLEM : EPSILON IS NOT DISPLAYED EVEN WHEN IT SHOULD BE; SUGGESTIONS ARE WELCOME!
+//			A FREE THUMS UP TO ANYONE WHO CAN FIGURE IT OUT!
 
 
 #include<stdio.h>
@@ -17,7 +19,8 @@ flag - a boolean for checking the encounter of epsilon
 bool flag=false;
 int k=0;
 char terminals[100];
-
+bool epsilon=false;
+char superChar;
 
 //This function checks whether a given terminal is already present in the terminals array
 bool in(char ch,char arr[100],int n){
