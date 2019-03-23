@@ -57,9 +57,9 @@ bool first(char productions[100][100],char ch,int n){
 		if(productions[i][0]==ch){
 			for(j=3;productions[i][j]!='\0';j++){
 				if(first(productions,productions[i][j],n))
-					continue;	
+					continue;
 				else
-					return false;
+					break;
 			}
 		}
 	}
