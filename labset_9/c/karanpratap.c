@@ -18,6 +18,8 @@ printChar - A character variable to store the current terminal to be printed in 
 encountered during calculation of first.
 firsts - A character array to store the symbols in first of the current symbol under consideration
 firstCounter - Number of first symbols found for the current symbol
+flag - a boolean which is set when an epsilon is encountered. Used in deciding whether to add 
+epsilon to the firsts or not.
 */
 int k=0;
 char terminals[100];
