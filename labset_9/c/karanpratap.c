@@ -1,5 +1,7 @@
 //Author : karanpratap
 //Program : First of a given symbol in the given grammar
+//CAUTION : DONT REFER TO THIS CODE JUST YET!
+
 
 #include<stdio.h>
 #include<stdlib.h>
