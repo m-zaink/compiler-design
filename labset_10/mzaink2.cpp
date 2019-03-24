@@ -23,9 +23,9 @@ bool containsEpsilon(char firsts[]) {
 int findProduction(char nonterminal, char terminal) {
 	for(int i = 0; i < np; ++i) {
 		if (nonterminal == productions[i][0]) {	
-			if(containsEpsilon(first[nonterminal]) && isIn(follow[nonterminal], terminal))
+			if(containsEpsilon(first[i]) && isIn(follow[nonterminal], terminal))
 				return i;	
-			if (isIn(first[nonterminal], terminal))
+			if (isIn(first[i], terminal))
 				return i;
 		}
 	}
@@ -59,7 +59,7 @@ int main() {
 	cout << "Enter the first of following productions : ";
 	for(int i = 0; i < np; ++i) {
 		cout << productions[i] << endl;
-		cin >> first[productions[i][0]];
+		cin >> first[i];
 	}
 
 	cout << "Enter the follow of following symbols : " << endl;
@@ -89,3 +89,31 @@ int main() {
 	return 0;
 }
 
+/* OUTPUT : 
+Enter the numbers of productions : 3
+Enter the number of non-terminals : 2
+Enter the number of terminals : 2
+Enter the productions : 
+S--0A
+A--S1
+A--1
+Enter the non-terminals : 
+S
+A
+Enter the terminals : 
+0
+1
+Enter the first of following productions : S--0A
+0
+A--S1
+0
+A--1
+1
+Enter the follow of following symbols : 
+S : $1
+A : $
+
+	0	1		
+S	S--0A			
+A	A--S1	A--1	
+*/
