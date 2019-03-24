@@ -52,3 +52,66 @@ int main(void){
         cout<<endl;
 	}
 }
+
+
+/*
+TEST CASES:
+
+1.
+
+Enter number of productions : 3
+Enter the productions : A->BC
+B->#
+C->c
+First(A) = # c
+First(B) = #
+First(C) = c
+
+2.
+
+Enter number of productions : 4
+Enter the productions : A->a
+A->BCD
+B->b
+A->q
+First(A) = a b q 
+First(A) = a b q 
+First(B) = b 
+First(A) = a b q
+
+-> redundancy here ; but it doesn't matter to you so...
+
+3.
+
+Enter number of productions : 4
+Enter the productions : A->####a
+A->a
+A->bbbbA
+A->x
+First(A) = a b x
+First(A) = a b x
+First(A) = a b x
+First(A) = a b x
+
+
+4.
+
+Enter number of productions : 6
+Enter the productions : A->BCD
+B->CD
+C->#
+C->c
+A->aD
+D->d
+First(A) = # a c d 
+First(B) = # c d 
+First(C) = # c 
+First(C) = # c 
+First(A) = # a c d 
+First(D) = d 
+
+-> redundancy in number of productions. 
+First (A)=d,a,c, should there be an # too?
+Same for others.
+
+*/
