@@ -56,9 +56,9 @@ int main() {
 
 	terminals[++nt] = '$';
 
-	cout << "Enter the first of following productions : ";
+	cout << "Enter the first of following productions : " << endl;
 	for(int i = 0; i < np; ++i) {
-		cout << productions[i] << endl;
+		cout << productions[i] << " : ";
 		cin >> first[i];
 	}
 
@@ -103,17 +103,15 @@ A
 Enter the terminals : 
 0
 1
-Enter the first of following productions : S--0A
-0
-A--S1
-0
-A--1
-1
+Enter the first of following productions : 
+S--0A : 0
+A--S1 : 0
+A--1 : 1
 Enter the follow of following symbols : 
 S : $1
 A : $
 
-	0	1		
+	0		1		
 S	S--0A			
 A	A--S1	A--1	
 */
