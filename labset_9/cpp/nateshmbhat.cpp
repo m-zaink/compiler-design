@@ -21,17 +21,17 @@ void findFirst(char c , char result[] ){
         if(productions[i][0]==c){//Non terminal on LHR matches with 'c'
             for(int j =3 ; productions[i][j]!='\0' ; j++){ //Traverse from 4th character till end of string
             	char symb = productions[i][j] ;
-            	if(islower(symb)){ //First(X) found for current production . add it to result . Break from traversing the string and go for the next production
-					result[symb]++ ; 
-					break; 
-            	}
-            	else{//its a non terminal 
+            	if(isupper(symb)){//its a non terminal 
             		findFirst(symb , subResult) ; 
 					addToResultSet(result , subResult) ; 
-            		if(subResult['#']>0){//epsilon found.Continue traversing the production string
-						if(productions[i][j+1]=='\0') result['#']++ ; 
+            		if(subResult['#']>0 && productions[i][j+1]=='\0') {//epsilon found.Continue traversing the production string
+						result['#']++ ; 
             		}
             		else break;
+            	}
+				else{ //First(X) found for current production . add it to result . Break from traversing the string and go for the next production
+					result[symb]++ ; 
+					break; 
             	}
             }
         }
