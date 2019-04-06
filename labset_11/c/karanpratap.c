@@ -3,8 +3,7 @@
 //Note: This is the ALPHA release. Test the code as you refer. Logical bug hunters are 
 //		always respected in my world.
 //PS: This program is designed taking the assumption that there's only one start production.
-//WARNING: NOT FINALISED YET
-//NO BOUNTY YET
+//BOUNTY UP: The one to report a logical bug along with a fix gets a free coke.
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -63,6 +62,9 @@ Operation:*Traverses all productions to find the one which corresponds to the gi
 NOTE: The counter variable maintains a count of the number of times the pointer was 
 	  incremented in this particular recursive call. This aids in backtracking in case this
 	  production is invalid and we need to move on to the next production.
+UPDATE:    In case epsilon is encountered(#), we need to continue the traversal within the 
+		   body of the production without incrementing the pointer.
+
 */
 bool procedure(char ch){
 	int i,counter=0;
@@ -81,6 +83,8 @@ bool procedure(char ch){
 						break;
 					}
 				}
+				else if(productions[i][j]=='#')
+					continue;
 				else{
 					if(!procedure(productions[i][j])){
 						pointer-=counter;
@@ -113,6 +117,8 @@ Operation:*Traverses all productions to find the one starting with the given sta
 		   encountered in between and that the input string was validated using the input 
 		   grammar. Thus returns true if the pointer is at the end of the input string else
 		   false.
+UPDATE:    In case epsilon is encountered(#), we need to continue the traversal within the 
+		   body of the production without incrementing the pointer.
 */
 bool startProcedure(char ch){
 	int i;
@@ -128,6 +134,9 @@ bool startProcedure(char ch){
 					else{
 						return false;
 					}
+				}
+				else if(productions[i][j]=='#'){
+					continue;
 				}
 				else{
 					if(!procedure(productions[i][j]))
@@ -149,10 +158,12 @@ the input string to be validated using recursive descent parsing.
 It then calls the startProcedure function of the start symbol specified by the user. If this
 function returns true, the string is accepted, otherwise rejected and the suitable message is
 printed.
+UPDATE: The user can now enter strings to be validated in a loop for a given grammar and can
+		stop willingly by providing 'n' or 'N' as the input for the choice provided.
 */
 int main(){
 	int i;
-	char start;
+	char start,ch;
 	printf("\nEnter the number of productions:");
 	scanf("%d",&n);
 	printf("\nEnter all the productions in the form - A->productionBody\n");
@@ -168,13 +179,18 @@ int main(){
 	getchar();
 	printf("\nEnter the start symbol:");
 	scanf("%c",&start);
-	printf("\nEnter the string to be validated:");
-	scanf("%s",string);
-	getchar();
-	if(startProcedure(start))
-		printf("ACCEPTED!");
-	else
-		printf("REJECTED");
+	do{
+		printf("\nEnter the string to be validated:");
+		scanf("%s",string);
+		getchar();
+		if(startProcedure(start))
+			printf("ACCEPTED!");
+		else
+			printf("REJECTED");
+		printf("\nEnter more strings to be validated?(N or n to stop):");
+		scanf("%c",&ch);
+		pointer=0;
+	}while(ch!='N' && ch!='n');
 	return 0;
 }
 
