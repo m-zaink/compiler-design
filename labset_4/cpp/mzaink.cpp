@@ -8,6 +8,7 @@
 //**PS : FIND SAMPLE OUTPUT AFFIXED AT THE END OF THIS FILE.
 
 //Required : Avaiable, Need, Request, Need Matrix.
+
 //Aliasing int as resouce.
 typedef int resource;
 //Aliasing int as process.
@@ -22,7 +23,7 @@ struct Finish
     //considered : set to true if the process is printed as a part
     //of safe sequence.
     bool finished, considered;
-    //var sequence keeps track of the position of 'this' process 
+    //var sequence keeps track of the position of 'this' process
     //in the safe sequence so generated.
     int sequence;
 };
@@ -58,7 +59,6 @@ void readMatrices(int available[], int max[][10], int allocation[][10], int need
 
     cout << "\nEnter the allocation matrix : " << endl;
 
-
     //Reading allocation matrix
     for (int i = 0; i < n; ++i)
     {
@@ -71,7 +71,6 @@ void readMatrices(int available[], int max[][10], int allocation[][10], int need
             cin >> allocation[i][j];
         }
     }
-
 
     //Updating need matrix
     for (int i = 0; i < n; ++i)
@@ -104,7 +103,7 @@ int findNextProcess(int work[], int need[][10], int allocation[][10], struct Fin
     //the process's needs.
     int counter;
 
-    //var to store the work matrix so that it doesn't get tampered 
+    //var to store the work matrix so that it doesn't get tampered
     //when not intended.
     int temp[m];
     copyVector(temp, work, m);
@@ -147,7 +146,7 @@ int findNextToPrint(struct Finish finish[], int n)
     //Utility function to find which process to be printed next.
 
     //var min keeps track of the smalled sequence among the non-printed processes
-    //var pos keeps track of the index of the non-printed process with smalled sequence. 
+    //var pos keeps track of the index of the non-printed process with smalled sequence.
     int min = INT_MAX, pos;
 
     for (int i = 0; i < n; ++i)

@@ -3,6 +3,7 @@
 
 #include <bits/stdc++.h>
 
+// Question : 
 // Given the list of processes, their burst times, priority and arrival times, write a program to implement the preemptive priority
 // CPU scheduling algorithm. Display the turnaround time and waiting time for each process. Also, calculate the average turnaround time
 // and average waiting time.
