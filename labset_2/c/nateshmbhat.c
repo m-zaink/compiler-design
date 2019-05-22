@@ -24,6 +24,7 @@ void sortPriority(){
 
 void prioritySchedule(){
    int i, t = 0  ;  // time
+   float avg_ta  = 0 , avg_wt  = 0; 
    sortPriority() ; 
 
    for( ; ; t++ ) // for every second choose the process to be alloted 1 second
@@ -49,8 +50,10 @@ void prioritySchedule(){
         p[chosen].alloted+=1 ; 
         if(p[chosen].alloted==p[chosen].bt){
             p[chosen].finished = true;
-            p[chosen].ta = t+1-p[chosen].ar ; 
+            p[chosen].ta = t+1-p[chosen].ar ;
+            avg_ta+=p[chosen].ta ; 
             p[chosen].wt = p[chosen].ta - p[chosen].bt ; 
+            avg_wt+=p[chosen].wt ; 
         }
     }
 
@@ -58,13 +61,14 @@ void prioritySchedule(){
     for(int i= 0 ;i < N ; i++){
         printf("p%d = Wait Time = %d  , Turn around time = %d\n" , p[i].id , p[i].wt , p[i].ta) ; 
     }
+    printf("Average wait time = %f , Average Turn around time = %f" , avg_wt/N , avg_ta/N) ; 
 }
 
 
 int main(void){
     printf("Enter number of processes : ") ; scanf("%d" , &N) ; 
 
-    printf("Enter arrival , burst and priority : ") ; 
+    printf("Enter arrival , burst and priority : \n") ; 
     for(int i =0 ; i < N ; i++){
         Process temp ; 
         temp.wt = temp.ta =  temp.alloted = 0 ; temp.id = i ; temp.finished = false ; 
@@ -83,8 +87,10 @@ Enter arrival , burst and priority :
 6 8 4
 7 5 1
 
-p3 =  Wait Time = 2 , Turn around time = 7
-p1 =  Wait Time = 0 , Turn around time = 10
-p2 =  Wait Time = 12 , Turn around time = 20
-p0 =  Wait Time = -2 , Turn around time = 1
+p3 = Wait Time = 0  , Turn around time = 5
+p1 = Wait Time = 5  , Turn around time = 15
+p2 = Wait Time = 14  , Turn around time = 22
+p0 = Wait Time = 0  , Turn around time = 3
+Average wait time = 4.750000 , Average Turn around time = 11.250000
+
 */
