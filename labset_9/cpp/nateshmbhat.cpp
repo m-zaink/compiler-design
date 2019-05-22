@@ -1,44 +1,46 @@
 //Program : Find First(X) where X is a non terminal for a Grammar given a set of productions
 //Author : nateshmbhat
-#include<iostream>
-#include<ctype.h>
-#include<cstring>
+#include<bits/stdc++.h>
+using namespace std ; 
 #define MAX 256
-using namespace std ;
-int P ; //no of productions
-char productions[MAX][MAX]; // Array of production strings
+int P ; 
+char productions[100][100] ; 
 
-void addToResultSet(char target[] , char source[]){ //This function adds the elements(except epsilon) of a source set to the target set.
-	for(int i =0 ; i < MAX ; i++){
-		if(i=='#') continue ; 
-		target[i]+=source[i] ; 
-	}
+void addToResultSet(char * dest , char * src){
+    for(int i=0 ;i < MAX ; i++){
+        if(i=='#') continue ; 
+        dest[i]+=src[i] ; 
+    }
 }
 
-void findFirst(char c , char result[] ){
-	if(islower(c)||c=='#'){ result[c]++ ; return ; }
-	for(int i =0 ;i < P ; i++){// traverse through all the productions 
-        if(productions[i][0]==c){//Non terminal on LHR matches with 'c'
-            for(int j =3 ; productions[i][j]!='\0' ; j++){ //Traverse from 4th character till end of string
-            	char symb = productions[i][j] ;
-            	if(isupper(symb)){//its a non terminal 
-					char subResult[MAX] = { 0 }; 
-            		findFirst(symb , subResult) ; 
-					addToResultSet(result , subResult) ; 
-            		if(subResult['#']>0 && productions[i][j+1]=='\0') {//epsilon found.Continue traversing the production string
-						result['#']++ ; 
-            		}
-					if(subResult['#']==0) break; // if there is no epsilon found in the subResult , then stop traversing the body of productin 
-            	}
-				else{ //terminal found. add it to result . Break from traversing the string and go for the next production
-					if(symb=='#' && strlen(productions[i]+3)!=1) continue ;  // only add # to result if its the only character in the body . Helps in cases where the producitons are like :  A->##a  
-					result[symb]++ ;
-					break; 
-            	}
-            }
+void findFirst(char c , char * result){
+    if(!isupper(c)){
+        result[c]++ ; return ; 
+    }
+    for(int i =0 ;i < P ; i++){
+        if(c==productions[i][0]){
+            for(int j = 3 ; productions[i][j] ; j++){
+                char k = productions[i][j] ; 
+                
+                if(isupper(k)){
+                    char subResult[MAX]={0} ; 
+                    findFirst(k , subResult) ; 
+                    addToResultSet(result , subResult) ; 
+                    if(subResult['#']>0 && productions[i][j+1]==0){
+                        result['#']++ ; 
+                    }
+                    else if(subResult['#']==0) break ; 
+                }
+                else{
+                    if(k=='#' && strlen(productions[i]+j)!=1) continue ; 
+                    result[k]++ ; 
+                    break ; 
+                }
+            }     
         }
-	}
+    }
 }
+
 
 int main(void){
 	cout<<"Enter number of productions : " ; cin>>P ;
@@ -54,7 +56,6 @@ int main(void){
         cout<<endl;
 	}
 }
-
 
 /*
 TEST CASES:
