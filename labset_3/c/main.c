@@ -20,7 +20,7 @@ void signal(int * s){
 
 
 void producer(int data){
-	if(mutex==0 || empty==0){ printf("-- Buffer Full -- \n") ; return ;} 
+	if(empty==0){ printf("-- Buffer Full -- \n") ; return ;} 
 	wait(&mutex) ; 
 	wait(&empty) ; 
 		

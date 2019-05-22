@@ -59,12 +59,11 @@ int getNextProcess(int work[], int current)
         if(finished[current]) continue ; 
 
         bool flag = true;
-        for (j = 0; j < N; j++)
+        for (j = 0; j < R; j++)
         {
             if (need[current][j] > work[j])
             {
-                flag = false;
-                break;
+                flag = false; break;
             }
         }
         if (flag == false)
@@ -83,8 +82,8 @@ bool findSafeSequence()
 
     while (true)
     {
-        int next = getNextProcess(work, current); // returns -1 if no process can be executed using work
-        if (next < 0)
+        int next = getNextProcess(work, current); // returns -1 if no process can be executed using work or all process are finished
+        if (next == -1)
         {
             for (i = 0; i < N; i++)
                 if (finished[i] == false)
@@ -93,12 +92,12 @@ bool findSafeSequence()
         }
 
         current = next;
-        finished[next] = true;
-        safeSequence[safeSequencePointer++] = next;
+        finished[current] = true;
+        safeSequence[safeSequencePointer++] = current ;
 
         for (i = 0; i < R; i++)
         {
-            work[i] += allocation[next][i];
+            work[i] += allocation[current][i];
         }
     }
 }
@@ -123,7 +122,7 @@ int main()
     }
     else
     {
-        printf("\nSo safe sequence exists !");
+        printf("\nNo safe sequence exists !");
     }
 }
 
