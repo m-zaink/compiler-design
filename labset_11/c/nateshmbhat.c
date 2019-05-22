@@ -23,7 +23,7 @@ void recursiveDescent(char p)
 					k++ ; 
 				}
 				else if (productionset[i][j] == '#'){
-					break ; 
+					continue ; 
 				}
 				else{
 					k = temp ; 
@@ -60,14 +60,66 @@ int main(void)
 
 /*
 
-E--TA
-A--+TA
-A--#
-T--FB
-B--*FB
+
+Number of productions:3
+Enter the productions , enter # for epsilon : 
+S--cAd
+A--ab
+A--a
+
+Enter the string : cad
+
+ Input string is valid
+Enter the string : caad
+
+ Invalid string !!!
+Enter the string : cabd
+
+ Input string is valid
+Enter the string : cabdd
+
+ Invalid string !!!
+Enter the string : ^C
+
+
+=====================================================================
+
+Number of productions:8
+Enter the productions , enter # for epsilon : 
+S--ABCD
+A--a
 B--#
-F--(E)
-F--id
+C--d
+C--k
+C--h
+D--#
+D--h
+
+Enter the string : ad
+
+ Input string is valid
+Enter the string : adh
+
+ Input string is valid
+Enter the string : ahh
+
+ Input string is valid
+Enter the string : akh
+
+ Input string is valid
+Enter the string : a###h
+
+ Input string is valid
+Enter the string : a###hh
+
+ Input string is valid
+Enter the string : add
+
+ Invalid string !!!
+Enter the string : ad#h#
+
+ Input string is valid
+Enter the string : ^C--id
 
 
 */
