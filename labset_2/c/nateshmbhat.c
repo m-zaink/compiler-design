@@ -13,7 +13,11 @@ void sortPriority(){
     for(int i =0 ; i < N ;i++){
         for(int j = 0 ;j < N-i-1 ; j++)
         {
-            if(p[j].pri > p[j+1].pri) swap(p[j] , p[j+1]) ; 
+            if(p[j].pri > p[j+1].pri)  {  //Swap 
+                Process temp = p[j] ; 
+                p[j] = p[j+1] ; 
+                p[j+1] = temp ; 
+            }
         }
     }
 } 
