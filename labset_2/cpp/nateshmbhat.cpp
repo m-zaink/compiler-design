@@ -1,7 +1,5 @@
 #include<iostream>
-
 using namespace std ; 
-
 typedef struct{
     int id , bt , pri , ar , wt , ta , alloted  ; 
     bool finished ;
@@ -23,7 +21,7 @@ void prioritySchedule(){
    int i, t = 0  ;  // time
    sortPriority() ; 
 
-   for( ; ; t++ )
+   for( ; ; t++ ) // for every second choose the process to be alloted 1 second
     {
         int chosen = -1 ; 
         for(i =0 ;i < N ; i++){ 
@@ -74,6 +72,7 @@ int main(void){
 }
 
 /*
+
 Enter number of processes : 4
 Enter arrival , burst and priority : 
 1 3 5   
@@ -85,5 +84,4 @@ p3 =  Wait Time = 2 , Turn around time = 7
 p1 =  Wait Time = 0 , Turn around time = 10
 p2 =  Wait Time = 12 , Turn around time = 20
 p0 =  Wait Time = -2 , Turn around time = 1
-
 */
