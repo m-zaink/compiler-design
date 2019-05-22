@@ -1,31 +1,18 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-int nt, nnt, np;
+int nt, nnt, np; // number of non terminals , terminals and productions
 
 char first[255][255], follow[255][255];
 char productions[20][20];
 char terminals[20], nonterminals[20];
 
-bool isIn(char firsts[], char terminal) {
-	for(int i = 0; firsts[i] != '\0'; ++i) 
-		if (terminal == firsts[i]) return true;
-	return false;
-}
-
-bool containsEpsilon(char firsts[]) {
-	for(int i = 0; firsts[i] != '\0'; ++i) 
-		if ('#' == firsts[i]) return true;
-	return false;
-}
-
 int findProduction(char nonterminal, char terminal) {
 	for(int i = 0; i < np; ++i) {
 		if (nonterminal == productions[i][0]) {	
-			if(containsEpsilon(first[i]) && isIn(follow[nonterminal], terminal))
+			if(strchr(first[i] , '#') && strchr(follow[nonterminal], terminal))
 				return i;	
-			if (isIn(first[i], terminal))
+			if (strchr(first[i], terminal))
 				return i;
 		}
 	}
@@ -54,7 +41,7 @@ int main() {
 	for(int i = 0; i < nt; ++i) 
 		cin >> terminals[i];
 
-	terminals[++nt] = '$';
+	terminals[nt++] = '$';
 
 	cout << "Enter the first of following productions : " << endl;
 	for(int i = 0; i < np; ++i) {
