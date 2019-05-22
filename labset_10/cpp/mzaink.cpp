@@ -68,7 +68,6 @@ int main() {
 		cin >> follow[nonterminals[i]];
 	}
 
-	system("clear");
 	cout << "\t";
 	for(int i = 0; i < nt; ++i)
 		cout << terminals[i] << "\t";

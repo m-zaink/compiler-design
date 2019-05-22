@@ -20,9 +20,9 @@ void findFirst(char c , char result[] ){
 	for(int i =0 ;i < P ; i++){// traverse through all the productions 
         if(productions[i][0]==c){//Non terminal on LHR matches with 'c'
             for(int j =3 ; productions[i][j]!='\0' ; j++){ //Traverse from 4th character till end of string
-				char subResult[MAX] = { 0 }; 
             	char symb = productions[i][j] ;
             	if(isupper(symb)){//its a non terminal 
+					char subResult[MAX] = { 0 }; 
             		findFirst(symb , subResult) ; 
 					addToResultSet(result , subResult) ; 
             		if(subResult['#']>0 && productions[i][j+1]=='\0') {//epsilon found.Continue traversing the production string
