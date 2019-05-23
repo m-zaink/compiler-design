@@ -89,7 +89,7 @@ int main(void){
 
 	while(1){
 		cout<<"\n1.FIFO\t2.LRU\t3.LFU : "  ; cin>>ch ; 
-		memset(frames , -1 , SIZE) ;  // set all elements of frames to -1 which indicates all frames are empty
+		memset(frames , -1 , SIZE * sizeof(int)) ;  // set all elements of frames to -1 which indicates all frames are empty
 		pageFaults= 0 , queueRear =-1 , queueFront = 0  ;
 
 		for(int i =0 ;i < P ; i++){
@@ -127,7 +127,6 @@ Enter no of pages : 13
 Enter page numbers : 7 0 1 2 0 3 0 4 2 3 0 3 2
 FIFO : Page Faults = 7
 LRU page faults = 6
-
 
 -----------------------------------------------------------------
 

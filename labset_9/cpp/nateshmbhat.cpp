@@ -36,7 +36,7 @@ void findFirst(char c , char * result){
                     result[k]++ ; 
                     break ; 
                 }
-            }     
+            }
         }
     }
 }
